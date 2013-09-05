@@ -61,7 +61,7 @@ describe SidekiqStatus::Worker do
         Sidekiq.redis{ |conn| conn.set(redis_key, 'stop') }
         wait{ container.reload.complete? }
         container.should be_complete
-        container.message.should be_nil
+        container.message.should =~ /Completed at/
       end
     end
   end

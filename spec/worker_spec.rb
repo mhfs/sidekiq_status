@@ -149,7 +149,7 @@ describe Sidekiq::Worker do
       wait{ container.reload.complete? }
 
       container.payload.should == 'some payload'
-      container.message.should be_nil
+      container.message.should =~ /Completed at/
     end
   end
 end
